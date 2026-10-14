@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --navy-primary: #142B45;
+    --text-muted: #626B78;
+    --accent-teal: #0B9297;
+    --accent-teal-hover: #087f84;
+    --bg-pale-blue: #EAF5F7;
+    --border-subtle: #D6E6E8;
+  }
+
+  html,
+  body {
+    scroll-behavior: smooth;
+  }
+
+  #home,
+  #about,
+  #services,
+  #activities,
+  #it-consulting,
+  #ued,
+  #web-dev {
+    scroll-margin-top: 90px;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Manrope', system-ui, -apple-system, sans-serif;
+    color: #142B45;
+    background-color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @keyframes floatSlow {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .animate-float-name {
+    display: inline-block;
+    animation: floatSlow 4.5s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* Services Card Styles with 0.3s Smooth Delayed Tilt on Hover */
+  .service-card {
+    border: 1px solid #D6E6E8;
+    background: #FFFFFF;
+    border-radius: 12px;
+    transition:
+      transform 300ms cubic-bezier(0.16, 1, 0.3, 1) 0ms,
+      border-color 300ms ease 0ms,
+      box-shadow 300ms ease 0ms,
+      background-color 300ms ease 0ms;
+    will-change: transform;
+    transform: translateY(0) rotate(0deg);
+  }
+
+  .service-card:hover {
+    border-color: #142B45;
+    box-shadow: 0 14px 28px rgba(20, 43, 69, 0.08);
+    transition:
+      transform 300ms cubic-bezier(0.16, 1, 0.3, 1) 300ms,
+      border-color 300ms ease 0ms,
+      box-shadow 300ms ease 300ms;
+  }
+
+  .service-card.hover\:rotate-\[-1\.5deg\]:hover {
+    transform: translateY(-6px) rotate(-1.5deg) !important;
+  }
+
+  .service-card.hover\:rotate-\[1\.5deg\]:hover {
+    transform: translateY(-6px) rotate(1.5deg) !important;
+  }
+
+  .service-card:focus-within {
+    border-color: #142B45;
+    box-shadow: 0 0 0 2px rgba(11, 146, 151, 0.35);
+  }
+
+  /* Universal smooth interaction curves for every box, button, card and link */
+  button, a, .card, [role="button"] {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-duration: 300ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .animate-float-name {
+      animation: none !important;
+      transform: none !important;
+    }
+    .service-card,
+    .service-card:hover {
+      transition: none !important;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
